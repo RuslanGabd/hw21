@@ -49,4 +49,12 @@ tasks.withType(Test) {
             exceptionFormat "short"
         }
     }
+
+}
+
+task android_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("Android")
+    }
+    systemProperties(System.getProperties())
 }
