@@ -6,7 +6,7 @@ import static helpers.CustomAllureListener.withCustomTemplates;
 import static java.lang.String.format;
 
 public class BrowserStack {
-    public static String getUrlVideo(String sessionId) {
+    public static String getVideoUrl(String sessionId) {
 
         String url = format("https://api.browserstack.com/app-automate/sessions/%s.json", sessionId);
 
