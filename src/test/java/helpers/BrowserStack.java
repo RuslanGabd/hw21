@@ -1,6 +1,5 @@
 package helpers;
 
-
 import static io.restassured.RestAssured.given;
 import static helpers.CustomAllureListener.withCustomTemplates;
 import static java.lang.String.format;

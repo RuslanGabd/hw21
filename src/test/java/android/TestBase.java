@@ -9,10 +9,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import drivers.BrowserStackMobileDriver;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Sleeper;
-
-import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
@@ -41,8 +37,7 @@ public class TestBase {
 
 
         closeWebDriver();
-       // Thread.sleep(65000);
-        //Attach.addVideo(sessionId);
+       //Attach.addVideo(sessionId);
     }
 
 
