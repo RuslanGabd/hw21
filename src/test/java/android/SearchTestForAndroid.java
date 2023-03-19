@@ -1,13 +1,11 @@
 package android;
 
-import com.codeborne.selenide.commands.ShouldHave;
+
 import io.appium.java_client.AppiumBy;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
