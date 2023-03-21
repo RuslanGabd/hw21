@@ -1,9 +1,10 @@
-package LocalAndroid;
+package localAndroid;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import drivers.BrowserStackMobileDriver;
+import drivers.LocalMobileDriver;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
@@ -18,7 +19,7 @@ public class TestBase {
 
     @BeforeAll
     static void BeforeAll() {
-        Configuration.browser = BrowserStackMobileDriver.class.getName();
+        Configuration.browser = LocalMobileDriver.class.getName();
         Configuration.browserSize = null;
     }
 
@@ -30,14 +31,14 @@ public class TestBase {
 
     @AfterEach
     void AfterEach() {
-       String sessionId = Selenide.sessionId().toString();
+       //String sessionId = Selenide.sessionId().toString();
 
         Attach.pageSource();
         // Attach.screenShotAs("Last screenshot");
 
 
         closeWebDriver();
-       Attach.addVideo(sessionId);
+      // Attach.addVideo(sessionId);
     }
 
 
