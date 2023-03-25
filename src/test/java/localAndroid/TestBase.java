@@ -16,10 +16,21 @@ import static com.codeborne.selenide.Selenide.open;
 
 
 public class TestBase {
-
+    public static String env = System.getProperty("env");
     @BeforeAll
     static void BeforeAll() {
-        Configuration.browser = LocalMobileDriver.class.getName();
+        switch (env) {
+            case "browserstack":
+                Configuration.browser = BrowserStackMobileDriver.class.getName();
+                break;
+            case "emulation":
+            case "real":
+                Configuration.browser = LocalMobileDriver.class.getName();
+                break;
+            default:
+                throw new RuntimeException();
+        }
+
         Configuration.browserSize = null;
     }
 
@@ -31,14 +42,12 @@ public class TestBase {
 
     @AfterEach
     void AfterEach() {
-       //String sessionId = Selenide.sessionId().toString();
-
+        String sessionId = Selenide.sessionId().toString();
         Attach.pageSource();
-        // Attach.screenShotAs("Last screenshot");
-
-
         closeWebDriver();
-      // Attach.addVideo(sessionId);
+        if (env.equals("browserstack")) {
+            Attach.addVideo(sessionId);
+        }
     }
 
 

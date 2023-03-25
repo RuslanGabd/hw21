@@ -62,7 +62,7 @@ task android_test(type: Test) {
 }
 
 
-task android_local(type: Test) {
+task android_localy(type: Test) {
     useJUnitPlatform {
         includeTags("Android_local")
     }

@@ -20,6 +20,7 @@ import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
 
 public class LocalMobileDriver implements WebDriverProvider {
     static MobileDriverConfig config = ConfigFactory.create(MobileDriverConfig.class, System.getProperties());
+
     public static URL getAppiumServerUrl() {
         try {
             return new URL("http://127.0.0.1:4723/wd/hub");
@@ -29,34 +30,28 @@ public class LocalMobileDriver implements WebDriverProvider {
     }
 
 
-    @Override
     public WebDriver createDriver(Capabilities capabilities) {
         UiAutomator2Options options = new UiAutomator2Options();
         options.merge(capabilities);
 
+        File app = getAppPath();
         options.setAutomationName(ANDROID_UIAUTOMATOR2)
                 .setPlatformName(ANDROID)
-      //          .setDeviceName("RFCR90ZMNQP")
-    //            .setPlatformVersion("13.0")
-                .setDeviceName("Pixel 4 API 30")
-                .setPlatformVersion("11.0")
-                .setApp(getAppPath())
+                .setDeviceName(config.getDeviceName())
+                .setPlatformVersion(config.getOsVersion())
+                .setApp(app.getAbsolutePath())
                 .setAppPackage("org.wikipedia.alpha")
                 .setAppActivity("org.wikipedia.main.MainActivity");
 
         return new AndroidDriver(getAppiumServerUrl(), options);
     }
 
-    private String getAppPath() {
+    private File getAppPath() {
 
-//       String appUrl = "https://github.com/wikimedia/apps-android-wikipedia/" +
-//              "releases/download/latest/app-alpha-universal-release.apk";
-//       // String appUrl="https://github.com/Olgaidukova/mobile/blob/local/src/test/resources/apps/app-alpha-universal-release.apk";
-////
-//       String appPath = "src/test/resources/apps/app-alpha-universal-release.apk";
+        String appUrl = "https://github.com/wikimedia/apps-android-wikipedia/" +
+                "releases/download/latest/app-alpha-universal-release.apk";
+        String appPath = "src/test/resources/apps/app-alpha-universal-release.apk";
 
-        String appUrl = "https://github.com/SimpleMobileTools/Simple-Calendar/releases/download/6.21.6/calendar-fdroid-release.apk";
-        String appPath = "src/test/resources/apps/calendar-fdroid-release.apk";
         File app = new File(appPath);
         if (!app.exists()) {
             try (InputStream in = new URL(appUrl).openStream()) {
@@ -65,6 +60,7 @@ public class LocalMobileDriver implements WebDriverProvider {
                 throw new AssertionError("Failed to download application", e);
             }
         }
-        return app.getAbsolutePath();
+        return app;
     }
 }
+

@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class TestBase {
 
     @BeforeAll
-    static void BeforeAll() {
+    static void beforeAll() {
         Configuration.browser = BrowserStackMobileDriver.class.getName();
         Configuration.browserSize = null;
     }
@@ -29,7 +29,7 @@ public class TestBase {
     }
 
     @AfterEach
-    void AfterEach() {
+    void afterEach() {
        String sessionId = Selenide.sessionId().toString();
 
         Attach.pageSource();
