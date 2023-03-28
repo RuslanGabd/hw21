@@ -23,7 +23,7 @@ public class LocalMobileDriver implements WebDriverProvider {
 
     public static URL getAppiumServerUrl() {
         try {
-            return new URL("http://127.0.0.1:4723/wd/hub");
+            return new URL(config.getDeviceUrl());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -40,17 +40,17 @@ public class LocalMobileDriver implements WebDriverProvider {
                 .setDeviceName(config.getDeviceName())
                 .setPlatformVersion(config.getOsVersion())
                 .setApp(app.getAbsolutePath())
-                .setAppPackage("org.wikipedia.alpha")
-                .setAppActivity("org.wikipedia.main.MainActivity");
+                .setAppPackage(config.getAppPackage())
+                .setAppActivity(config.getAppActivity());
 
         return new AndroidDriver(getAppiumServerUrl(), options);
     }
 
     private File getAppPath() {
 
-        String appUrl = "https://github.com/wikimedia/apps-android-wikipedia/" +
-                "releases/download/latest/app-alpha-universal-release.apk";
-        String appPath = "src/test/resources/apps/app-alpha-universal-release.apk";
+        String appUrl = config.getAppUrl();
+        String appPath =  config.getAppPath();
+
 
         File app = new File(appPath);
         if (!app.exists()) {
