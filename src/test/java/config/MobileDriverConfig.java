@@ -3,9 +3,8 @@ package config;
 import org.aeonbits.owner.Config;
 
 @Config.Sources({
-        "classpath:${env}.properties"
-        // "file:./src/test/resources/config/emulation.properties"
-})
+       "classpath:config/${env}.properties"
+      })
 public interface MobileDriverConfig extends Config {
     @Key("remoteUrl")
     String getRemoteURL();
@@ -19,8 +18,8 @@ public interface MobileDriverConfig extends Config {
     @Key("app")
     String getApp();
 
-    @Key("device")
-    String getDevice();
+    @Key("deviceName")
+    String getDeviceName();
 
     @Key("project")
     String getProject();
@@ -34,10 +33,7 @@ public interface MobileDriverConfig extends Config {
     @Key("osVersion")
     String getOsVersion();
 
-    @Key("DeviceName")
-    String getDeviceName();
-
-    @Key("deviceUrl")
+     @Key("deviceUrl")
     String getDeviceUrl();
 
     @Key("appPackage")

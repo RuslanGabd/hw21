@@ -24,12 +24,11 @@ public class BrowserStackMobileDriver implements WebDriverProvider {
         String password = config.getPassword();
         String app = config.getApp();
         String remoteUrl = config.getRemoteURL();
-        String device = config.getDevice();
+        String device = config.getDeviceName();
         String version = config.getOsVersion();
         String nameProject = config.getProject();
         String build = config.getBuild();
         String nameTest = config.getName();
-
         MutableCapabilities mutableCapabilities = new MutableCapabilities();
         mutableCapabilities.merge(capabilities);
 
