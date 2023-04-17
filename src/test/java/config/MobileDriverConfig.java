@@ -16,7 +16,8 @@ public interface MobileDriverConfig extends Config {
     String getPassword();
 
     @Key("app")
-    String getApp();
+    @DefaultValue("bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c")
+    String app();
 
     @Key("deviceName")
     String getDeviceName();
@@ -27,8 +28,6 @@ public interface MobileDriverConfig extends Config {
     @Key("build")
     String getBuild();
 
-    @Key("name")
-    String getName();
 
     @Key("osVersion")
     String getOsVersion();
